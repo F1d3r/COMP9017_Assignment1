@@ -41,6 +41,6 @@ test:
 	echo "TODO"
 
 clean:
-	# delete any unwanted files (not your source files!)
+	# delete any unwanted build or editing files (not your source files!)
 	echo "TODO"
 
