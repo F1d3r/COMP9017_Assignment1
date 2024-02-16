@@ -37,8 +37,10 @@ test:
 	#  Generator self test - with argsets
 	#  Searcher self test
 	#  Generator and Searcher end to end tests - with argsets
-	# using a tester.sh script (any supported scripting language on Ed) is encouraged
+	# using a test.sh script (any supported scripting language on Ed) is encouraged
 	echo "TODO"
+	chmod u+x test.sh
+	./test.sh 
 
 clean:
 	# delete any unwanted build or editing files (not your source files!)
