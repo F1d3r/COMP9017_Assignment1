@@ -26,7 +26,7 @@ generator:
 searcher: ${OBJFILES}
 	# commands to build the Searcher program
 	# use only a single file: smallest_triangle.c
-	${CC} ${CFLAGS} ${LDFLAGS} ${SEARCHER_SOURCE} -o ${SEARCHER_BINARY}
+	${CC} ${CFLAGS} ${SEARCHER_SOURCE} -o ${SEARCHER_BINARY} ${LDFLAGS}
 
 sample:
 	# execute Generator program with arguments -N=20 -mindist=5 rseed=3 and pipe the result to Searcher program
