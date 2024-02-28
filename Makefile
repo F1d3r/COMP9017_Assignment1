@@ -23,7 +23,7 @@ generator:
 	# use only a single file: GenPoints.java or gen_points.py
 	echo "TODO"
 
-searcher: ${OBJFILES}
+searcher: ${SEARCHER_SOURCE}
 	# commands to build the Searcher program
 	# use only a single file: smallest_triangle.c
 	${CC} ${CFLAGS} ${SEARCHER_SOURCE} -o ${SEARCHER_BINARY} ${LDFLAGS}
