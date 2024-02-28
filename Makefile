@@ -29,7 +29,7 @@ searcher: ${SEARCHER_SOURCE}
 	${CC} ${CFLAGS} ${SEARCHER_SOURCE} -o ${SEARCHER_BINARY} ${LDFLAGS}
 
 sample:
-	# execute Generator program with arguments -N=20 -mindist=5 rseed=3 and pipe the result to Searcher program
+	# execute Generator program with arguments -N=20 -mindist=2 rseed=3 and pipe the result to Searcher program
 	echo "TODO"
 
 test:
