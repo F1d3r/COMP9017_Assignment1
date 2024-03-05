@@ -5,6 +5,9 @@ LDFLAGS=-lm
 SEARCHER_SOURCE=smallest_triangle.c
 SEARCHER_BINARY=smallest_triangle
 
+generator = gen_points.py
+generator_binary = gen_points
+
 # non dependency commands for this Makefile
 .PHONY: build
 .PHONY: generator
@@ -18,7 +21,8 @@ build: generator searcher
 	# commands that are needed to build both your program (no execution)
 	echo "TODO"
 
-generator: 
+generator: gen_points.py
+	gcc gen_points.py -o generator
 	# commands to build the Generator program (no execution)
 	# use only a single file: GenPoints.java or gen_points.py
 	echo "TODO"
@@ -44,5 +48,6 @@ test:
 
 clean:
 	# delete any unwanted build or editing files (not your source files!)
+	rm generator_binary
 	echo "TODO"
 
