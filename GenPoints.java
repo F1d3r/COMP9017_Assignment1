@@ -4,20 +4,40 @@ public class GenPoints{
 
 
     public static void main(String[] args){
-        System.out.println(args.length);
 
-        int numberOfPoints = 10;
+        int numberOfPoints = 0;
+        double minDistance = 0;
+        boolean rseed = false;
+        // Get the arguments from the command line.
+        System.out.println(args.length);
+        for(int i = 0; i < args.length; i++){
+            String arg = args[i];
+            if(arg.startsWith("-N=")){
+                arg = arg.substring(3);
+                numberOfPoints = Integer.parseInt(arg);
+                System.out.println("Number of points: " + numberOfPoints);
+            }else if(arg.startsWith("-mindist=")){
+                arg = arg.substring(9);
+                minDistance = Double.parseDouble(arg);
+                System.out.println("Minumu distance: " + minDistance);
+            }else if(arg.startsWith("-rseed=")){
+                arg = arg.substring(7);
+                rseed = Boolean.parseBoolean(arg);
+                System.out.println("Rseed: " + rseed);
+            }
+        }
+
         //int numberOfPoints = Integer.parseInt(args[1]);    // Number of Points.
         // Range of points coordinate.
         double minX = -50;
         double maxX = 50;
         double minY = -50;
         double maxY = 50;
-        double minDistance = 1;
         //double minDistance = Integer.parseInt(args[0]);  // Minumu distance to other points.
         double[][] points = new double[numberOfPoints][2];    // Used to store points.
         //DecimalFormat format = new DecimalFormat("#.00");   // For print format
 
+        
         
         // Generate the first point.
         double x = generateRandom(minX, maxY);
@@ -32,7 +52,7 @@ public class GenPoints{
             boolean valid = false;
             // Check if the generated point valid.
             while(!valid){
-                x = generateRandom(minX, maxY);
+                x = generateRandom(minX, maxX);
                 y = generateRandom(minY, maxY);
                 // Calculate the distance to existed points.
                 for(int j = 0; j < i; j++){
