@@ -1,3 +1,4 @@
+import java.util.Random;
 //import java.text.DecimalFormat;
 
 public class GenPoints{
@@ -5,43 +6,68 @@ public class GenPoints{
 
     public static void main(String[] args){
 
-        int numberOfPoints = 0;
-        double minDistance = 0;
-        boolean rseed = false;
-        // Get the arguments from the command line.
-        System.out.println(args.length);
-        for(int i = 0; i < args.length; i++){
-            String arg = args[i];
-            if(arg.startsWith("-N=")){
-                arg = arg.substring(3);
-                numberOfPoints = Integer.parseInt(arg);
-                System.out.println("Number of points: " + numberOfPoints);
-            }else if(arg.startsWith("-mindist=")){
-                arg = arg.substring(9);
-                minDistance = Double.parseDouble(arg);
-                System.out.println("Minumu distance: " + minDistance);
-            }else if(arg.startsWith("-rseed=")){
-                arg = arg.substring(7);
-                rseed = Boolean.parseBoolean(arg);
-                System.out.println("Rseed: " + rseed);
+        int numberOfPoints = 1;
+        double minDistance = 1;
+        int rseed = 0;
+        boolean getN = false;
+        boolean getMinDistance = false;
+        Random random = new Random();
+
+
+        try{
+            // Get the arguments from the command line.
+            for(int i = 0; i < args.length; i++){
+                String arg = args[i];
+                if(arg.startsWith("-N=")){
+                    arg = arg.substring(3);
+                    numberOfPoints = Integer.parseInt(arg);
+                    getN = true;
+                    //System.out.println("Number of points: " + numberOfPoints);
+                }else if(arg.startsWith("-mindist=")){
+                    arg = arg.substring(9);
+                    minDistance = Double.parseDouble(arg);
+                    getMinDistance = true;
+                    //System.out.println("Minumu distance: " + minDistance);
+                }else if(arg.startsWith("-rseed=")){
+                    arg = arg.substring(7);
+                    rseed = Integer.parseInt(arg);
+                    // Set the random with the random seed.
+                    random = new Random(rseed);
+                    //System.out.println("Rseed: " + rseed);
+                }else{
+                    // Check if there is an invalid argument given.
+                    System.err.println("invalid arguments1");
+                    System.exit(-4);
+                }
             }
         }
-
+        // Handle other arguments input exception. e.g.: -N=haha; -N= 20.
+        catch(Exception e){
+            System.err.println("invalid arguments2");
+            System.exit(-4);
+        }
+        
+        // Check if the two core arguments are given.
+        if (!getN || !getMinDistance) {
+            System.err.println("invalid arguments3");
+            System.exit(-4);
+        }
+        
+        
         //int numberOfPoints = Integer.parseInt(args[1]);    // Number of Points.
+        //double minDistance = Double.parseDouble(args[2]);  // Minumu distance to other points.
+        //DecimalFormat format = new DecimalFormat("#.00");   // For print format
         // Range of points coordinate.
         double minX = -50;
         double maxX = 50;
         double minY = -50;
         double maxY = 50;
-        //double minDistance = Integer.parseInt(args[0]);  // Minumu distance to other points.
         double[][] points = new double[numberOfPoints][2];    // Used to store points.
-        //DecimalFormat format = new DecimalFormat("#.00");   // For print format
-
         
         
-        // Generate the first point.
-        double x = generateRandom(minX, maxY);
-        double y = generateRandom(minY, maxY);
+        // Generate the first point, because the first point must be valid.
+        double x = minX + (maxX - minX) * random.nextDouble();
+        double y = minY + (maxY - minY) * random.nextDouble();
         
         // Store the point into the array.
         points[0][0] = x;
@@ -52,8 +78,8 @@ public class GenPoints{
             boolean valid = false;
             // Check if the generated point valid.
             while(!valid){
-                x = generateRandom(minX, maxX);
-                y = generateRandom(minY, maxY);
+                x = minX + (maxX - minX) * random.nextDouble();
+                y = minY + (maxY - minY) * random.nextDouble();
                 // Calculate the distance to existed points.
                 for(int j = 0; j < i; j++){
                     double dis = Math.sqrt(Math.pow((points[j][0] - x), 2) + Math.pow((points[j][1] - y), 2));
@@ -80,8 +106,8 @@ public class GenPoints{
         // Print all points.
         for(int i = 0; i < numberOfPoints; i++){
             System.out.printf("%.2f", (points[i][0]));
-            System.out.printf(", ");
-            System.out.printf("%.2f\n", (points[i][0]));
+            System.out.printf(",");
+            System.out.printf("%.2f\n", (points[i][1]));
         }
 
         /*
@@ -89,14 +115,7 @@ public class GenPoints{
             System.out.println(format.format(points[i][0]) + ", " + format.format(points[i][0]));
         }
         */
+
     }
-
-
-
-
-    private static double generateRandom(double min, double max){
-        return (min + Math.random() * (max - min));
-    }
-
 
 }
