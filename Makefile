@@ -4,9 +4,11 @@ CFLAGS=-O2 -Wall -Werror -Wno-unused-result -std=c99
 LDFLAGS=-lm
 SEARCHER_SOURCE=smallest_triangle.c
 SEARCHER_BINARY=smallest_triangle
+JAVA=javac
+IN=tests/generator_test01.in
 
-generator = gen_points.py
-generator_binary = gen_points
+generator = GenPoints.java
+generator_binary = GenPoints
 
 # non dependency commands for this Makefile
 .PHONY: build
@@ -21,18 +23,19 @@ build: generator searcher
 	# commands that are needed to build both your program (no execution)
 	echo "TODO"
 
-generator: gen_points.py
-	gcc gen_points.py -o generator
+generator: $(generator)
+	javac GenPoints.java
 	# commands to build the Generator program (no execution)
 	# use only a single file: GenPoints.java or gen_points.py
 	echo "TODO"
 
-searcher: ${SEARCHER_SOURCE}
+searcher: $(SEARCHER_SOURCE)
+	${CC} ${CFLAGS} ${SEARCHER_BINARY} ${SEARCHER_SOURCE} ${LDFLAGS}
 	# commands to build the Searcher program
 	# use only a single file: smallest_triangle.c
-	${CC} ${CFLAGS} ${SEARCHER_SOURCE} -o ${SEARCHER_BINARY} ${LDFLAGS}
 
 sample:
+	$(JAVA) $(generator) -arg1 -arg2 -arg3 < &(IN) | ./$(SEARCHER_BINARY)
 	# execute Generator program with arguments -N=20 -mindist=2 rseed=3 and pipe the result to Searcher program
 	echo "TODO"
 

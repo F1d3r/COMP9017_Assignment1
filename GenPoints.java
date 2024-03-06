@@ -3,7 +3,6 @@ import java.util.Random;
 
 public class GenPoints{
 
-
     public static void main(String[] args){
 
         int numberOfPoints = 1;
@@ -84,9 +83,9 @@ public class GenPoints{
                 for(int j = 0; j < i; j++){
                     double dis = Math.sqrt(Math.pow((points[j][0] - x), 2) + Math.pow((points[j][1] - y), 2));
                     // If it is too close to some point.
-                    if(dis <= minDistance){
+                    if(dis < minDistance){
                         valid = false;
-                        System.out.println("Too close! Invalid!");
+                        //System.out.println("Too close! Invalid!");
                         break;
                     }
                     // If the distance is fine and this is the final one point to check.
@@ -106,7 +105,7 @@ public class GenPoints{
         // Print all points.
         for(int i = 0; i < numberOfPoints; i++){
             System.out.printf("%.2f", (points[i][0]));
-            System.out.printf(",");
+            System.out.printf(", ");
             System.out.printf("%.2f\n", (points[i][1]));
         }
 
