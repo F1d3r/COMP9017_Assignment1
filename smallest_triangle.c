@@ -92,7 +92,7 @@ int main(){
     // }
 
 
-    if(index < 4){
+    if(index < 3){
         for(int i = 0; i < index - 1; i++){
             printf("%.2f, %.2f\n", points[index][0], points[index][1]);
         }
