@@ -151,7 +151,8 @@ int main(){
     char buff[100];
 
     while(!feof(stdin)){
-        scanf("%s", buff);
+        //scanf("%s", buff);
+        fgets(buff, sizeof(buff), stdin);
         printf("%s\n", buff);
 
 
