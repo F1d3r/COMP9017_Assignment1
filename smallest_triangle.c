@@ -36,7 +36,8 @@ int main(){
 
     // Read the stdin to the end.
     while(!feof(stdin)){
-        // Read the input number, store it into the x.
+
+        // Read the first input number, store it into the x.
         valid = scanf("%f", &x);
         // Check if there is only two decimal places of the num.
         if(x != roundf(x * 100) / 100){
@@ -57,6 +58,8 @@ int main(){
         getchar();
         getchar();
         
+
+        // Read the second input number, store it into y.
         valid = scanf("%f", &y);
         // Check if there is only two decimal places of the num.
         if(y != roundf(y * 100) / 100){
@@ -80,6 +83,7 @@ int main(){
         index++;
     }
 
+    // Print message to report the read points.
     printf("read %d points\n", index-1);
 
     // Print all points.
@@ -88,25 +92,30 @@ int main(){
     // }
 
 
-    // Find the closest 3 points.
-    // int count;
-    for(int i = 0; i < index-1; i++){
-        for(int j = 0; j < index-1; j++){
-            if(j == i){
-                // count++;
-                // printf("Duplicate %d.\n", count);
-                continue;
-            }
-
-            for(int k = 0; k < index -1; k++){
-                if(k == j || k == i){
+    if(index < 4){
+        for(int i = 0; i < index - 1; i++){
+            printf("%.2f, %.2f\n", points[index][0], points[index][1]);
+        }
+        printf("This is not a triangle\n");
+    }else{
+        // Find the closest 3 points.
+        // int count;
+        for(int i = 0; i < index-1; i++){
+            for(int j = 0; j < index-1; j++){
+                if(j == i){
                     // count++;
                     // printf("Duplicate %d.\n", count);
                     continue;
-                }else{
+                }
 
-                    float temp = calDist(points[k][0], points[k][1], points[j][0], points[j][1], points[i][0], points[i][1]);
-                    if(temp < minDist){
+                for(int k = 0; k < index -1; k++){
+                    if(k == j || k == i){
+                        // count++;
+                        // printf("Duplicate %d.\n", count);
+                        continue;
+                    }else{
+                        float temp = calDist(points[k][0], points[k][1], points[j][0], points[j][1], points[i][0], points[i][1]);
+                        if(temp < minDist){
                         minDist = temp;
                         minX1 = points[k][0];
                         minX2 = points[j][0];
@@ -114,25 +123,28 @@ int main(){
                         minY1 = points[k][1];
                         minY2 = points[j][1];
                         minY3 = points[i][1];
+                        }
                     }
+
+
                 }
-
-
             }
+        }
+
+    
+        printf("%.2f, %.2f\n", minX3, minY3);
+        printf("%.2f, %.2f\n", minX2, minY2);
+        printf("%.2f, %.2f\n", minX1, minY1);
+
+        // Check if they forms a triangle.
+        if(isTriangle(minX1, minY1, minX2, minY2, minX3, minY3)){
+            printf("This is a triangle\n");
+        }else{
+            printf("This is not a triangle\n");
         }
     }
 
     
-    printf("%.2f, %.2f\n", minX1, minY1);
-    printf("%.2f, %.2f\n", minX2, minY2);
-    printf("%.2f, %.2f\n", minX3, minY3);
-
-    // Check if they forms a triangle.
-    if(isTriangle(minX1, minY1, minX2, minY2, minX3, minY3)){
-        printf("This is a triangle\n");
-    }else{
-        printf("This is not a triangle\n");
-    }
 
 
 
