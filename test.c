@@ -1,35 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <ctype.h>
 
 
 // Flags used to determine program logic.
 int commaFlag = 0;
 int pointFlag = 0;
 int negativeFlag = 0;
-
-
-float calDist(float x1, float y1, float x2, float y2){
-    return sqrt((pow((x1 - x2), 2) + pow((y1 - y2), 2)));
-}
-
-
-float totalDist(float x1, float y1, float x2, float y2, float x3, float y3){
-    return calDist(x1, y1, x2, y2) + calDist(x1, y1, x3, y3) + calDist(x2, y2, x3, y3);
-}
-
-
-int isTriangle(float x1, float y1, float x2, float y2, float x3, float y3){
-    float area = 0;;
-    area = 0.5 * abs((x1*(y2 - y3) + x2*(y3-y1) + x3*(y1-y2)));
-
-    if(area > 0.001){
-        return 1;
-    }else{
-        return 0;
-    }
-}
-
 
 void clearLine(){
     char c;
@@ -96,18 +72,8 @@ void invalid(int errcode){
 }
 
 
-int main(){
 
-    // Used to store points.
-    float points[1000][2];
-    float minX1 = 0;
-    float minX2 = 0;
-    float minX3 = 0;
-    float minY1 = 0;
-    float minY2 = 0;
-    float minY3 = 0;
-    float minDist = 1;
-    float minDistSum = 142;
+int main(){
 
     // Used to read char.
     char c;
@@ -455,67 +421,5 @@ int main(){
 
     printf("%d\n", pointCount);
 
-    // Print message to report the read points.
-    printf("read %d points\n", pointCount);
 
-    // Print all points.
-    // for(int i = 0; i < pointCount-1; i ++){
-    //     printf("%.2f, %.2f\n", points[i][0], points[i][1]);
-    // }
-
-    // If there is not sufficient points to form a triangle.
-    if(pointCount < 3){
-        // Just print all points.
-        for(int i = 0; i < pointCount - 1; i++){
-            printf("%.2f, %.2f\n", points[pointCount][0], points[pointCount][1]);
-        }
-        // Determine it is no a triangle.
-        printf("This is not a triangle\n");
-    }else{
-        // Find the closest 3 points.
-        // int count;
-        for(int i = 0; i < pointCount; i++){
-            for(int j = 0; j < pointCount; j++){
-                // Skip the duplicated points.
-                if(j == i){
-                    // printf("Duplicate %d.\n", count);
-                    continue;
-                }
-
-                for(int k = 0; k < pointCount; k++){
-                    // Skip the duplicated points.
-                    if(k == j || k == i){
-                        // printf("Duplicate %d.\n", count);
-                        continue;
-                    }else{
-                        float distSum = totalDist(points[k][0], points[k][1], points[j][0], points[j][1], points[i][0], points[i][1]);
-                        if(distSum < minDistSum){
-                        minDistSum = distSum;
-                        minX1 = points[i][0];
-                        minX2 = points[j][0];
-                        minX3 = points[k][0];
-                        minY1 = points[i][1];
-                        minY2 = points[j][1];
-                        minY3 = points[k][1];
-                        }
-                    }
-                }
-            }
-        }
-
-        // Print the information of three closest points.
-        printf("%.2f, %.2f\n", minX1, minY1);
-        printf("%.2f, %.2f\n", minX2, minY2);
-        printf("%.2f, %.2f\n", minX3, minY3);
-
-        // Check if they forms a triangle.
-        if(isTriangle(minX1, minY1, minX2, minY2, minX3, minY3)){
-            printf("This is a triangle\n");
-        }else{
-            printf("This is not a triangle\n");
-        }
-    }
-
-
-    return 0;
 }
