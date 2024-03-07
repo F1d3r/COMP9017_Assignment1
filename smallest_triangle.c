@@ -151,8 +151,8 @@ int main(){
     char buff[100];
 
     while(!feof(stdin)){
-        scanf("%s", &buff);
-        printf("%s", buff);
+        scanf("%s", buff);
+        printf("%s\n", buff);
 
 
 
