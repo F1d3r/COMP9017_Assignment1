@@ -24,7 +24,7 @@ build: generator searcher
 	echo "TODO"
 
 generator: $(generator)
-	javac GenPoints.java
+	$(JAVA) $(Generator)
 	# commands to build the Generator program (no execution)
 	# use only a single file: GenPoints.java or gen_points.py
 	echo "TODO"
