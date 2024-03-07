@@ -21,25 +21,18 @@ generator_binary = GenPoints
 
 # default rule
 build: generator searcher
-	# commands that are needed to build both your program (no execution)
 
 
 generator: $(generator_JAVA)
 	$(JAVA) $(generator_JAVA)
-	# commands to build the Generator program (no execution)
-	# use only a single file: GenPoints.java or gen_points.py
 
 
 searcher: $(SEARCHER_SOURCE)
 	${CC} ${SEARCHER_SOURCE} ${CFLAGS} ${SEARCHER_BINARY} ${LDFLAGS}
-	# gcc smallest_triangle.c -o smallest_triangle -lm
-	# commands to build the Searcher program
-	# use only a single file: smallest_triangle.c
 
 sample: $(IN) $(generator_binary) $(SEARCHER_BINARY) $(generator_output)
 	cat $(IN) | xargs java $(generator_binary) > $(generator_output)
 	cat $(generator_output) | $(SEARCHER_BINARY)
-	# execute Generator program with arguments -N=20 -mindist=2 rseed=3 and pipe the result to Searcher program
 
 
 test:
