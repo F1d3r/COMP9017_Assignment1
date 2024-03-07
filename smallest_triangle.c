@@ -151,15 +151,8 @@ int main(){
     char buff[100];
 
     while(!feof(stdin)){
-        scanf("%f", &x);
-        scanf("%c", &buff);
-        scanf("%c", &buff);
-        scanf("%f", &y);
         scanf("%s", &buff);
-        
-        printf("%.2f", x);
-        printf("%.2f", y);
-        
+        printf("%s", buff);
 
 
 
