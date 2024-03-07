@@ -150,7 +150,7 @@ int main(){
     float y;
     char buff[100];
 
-    while(feof(stdin)){
+    while(!feof(stdin)){
         scanf("%f", &x);
         scanf("%c", &buff);
         scanf("%c", &buff);
