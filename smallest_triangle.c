@@ -809,9 +809,9 @@ void findClosest(){
 
         // Check if they forms a triangle.
         if(isTriangle(points[minDistPoint1][0], points[minDistPoint1][1], points[minDistPoint2][0], points[minDistPoint2][1], points[minDistPoint3][0], points[minDistPoint3][1])){
-            // printf("This is a triangle\n");
+            printf("This is a triangle\n");
         }else{
-            // printf("This is not a triangle\n");
+            printf("This is not a triangle\n");
         }
     }
 }
