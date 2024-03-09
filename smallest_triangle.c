@@ -187,6 +187,7 @@ void writePoint(){
     // Check duplicated.
     int duplicate = 0;
     int outOfRange = (x < 50 && x > -50 && y < 50 && y > -50) ? 0 : 1;
+
     for(int i = 0; i < pointCount; i++){
         if(points[i][0] == x && points[i][1] == y){
             duplicate = 1;
@@ -205,7 +206,7 @@ void writePoint(){
             // printf("A new point added. There have been %d points now.\n\n", pointCount); 
         }
     }
-    
+
     // Clear x and y.
     x = 0;
     y = 0;
@@ -218,9 +219,9 @@ void readInput(){
     while((c = getchar())!=EOF){
         charCount++;
         // if(c != '\n'){
-        //     // printf("A char read: %c\n", c);
+        // printf("A char read: %c\n", c);
         // }else{
-        //     // printf("A char read: \\n\n");
+        // printf("A char read: \\n\n");
         // }
 
         // Update current input code.
@@ -514,7 +515,7 @@ void readInput(){
                 {
                 case 0:
                     negativeFlag = 1;
-                    // // printf("Negative point set.\n");
+                    // printf("Negative point set.\n");
                     break;
                 case 1:
                     // Invalid.
@@ -526,7 +527,7 @@ void readInput(){
                     break;
                 case 3:
                     negativeFlag = 1;
-                    // // printf("Negative point set.\n");
+                    // printf("Negative point set.\n");
                     break;
                 case 4:
                     // Invalid.
@@ -538,7 +539,7 @@ void readInput(){
                     break;
                 case 6:
                     negativeFlag = 1;
-                    //// printf("Negative point set.\n");
+                    // printf("Negative point set.\n");
                     break;
                 case 7:
                     // Invalid.
@@ -607,11 +608,11 @@ void readInput(){
                     negativeFlag = 0;
                     zeroFlag = 0;
                     digitCount = 0;
-                    //// printf("Comma flag clear.\n");
-                    //// printf("Point flag clear.\n");
-                    //// printf("Negative flag clear.\n");
-                    //// printf("Zero leading flag clear.\n");
-                    //// printf("Digit count clear.\n\n");
+                    // printf("Comma flag clear.\n");
+                    // printf("Point flag clear.\n");
+                    // printf("Negative flag clear.\n");
+                    // printf("Zero leading flag clear.\n");
+                    // printf("Digit count clear.\n\n");
                     break;
                 case 7:
                     if(commaFlag){
@@ -620,11 +621,11 @@ void readInput(){
                         negativeFlag = 0;
                         zeroFlag = 0;
                         digitCount = 0;
-                        //// printf("Comma flag clear.\n");
-                        //// printf("Point flag clear.\n");
-                        //// printf("Negative flag clear.\n");
-                        //// printf("Zero leading flag clear.\n");
-                        //// printf("Digit count clear.\n");
+                        // printf("Comma flag clear.\n");
+                        // printf("Point flag clear.\n");
+                        // printf("Negative flag clear.\n");
+                        // printf("Zero leading flag clear.\n");
+                        // printf("Digit count clear.\n");
                         writePoint();
 
                         break;
@@ -647,12 +648,12 @@ void readInput(){
                     //Write number.
                     updateNum((c-48));
                     zeroFlag = 1;
-                    //// printf("Zero leading flag set.\n\n");
+                    // printf("Zero leading flag set.\n\n");
                     break;
                 case 1:
                     if(pointFlag){
                         digitCount ++;
-                        //// printf("Digit updated. %d decimal now.\n", digitCount);
+                        // printf("Digit updated. %d decimal now.\n", digitCount);
                     }
                     //Write number.
                     updateNum((c-48));
@@ -665,17 +666,17 @@ void readInput(){
                     //Write number.
                     updateNum((c-48));
                     zeroFlag = 1;
-                    //// printf("Zero leading flag set.\n");
+                    // printf("Zero leading flag set.\n");
                     break;
                 case 4:
                     digitCount ++;
-                    //// printf("Digit updated. %d decimal now.\n", digitCount);
+                    // printf("Digit updated. %d decimal now.\n", digitCount);
                     //Write number.
                     updateNum((c-48));
                     break;
                 case 5:
                     zeroFlag = 1;
-                    //// printf("Zero leading flag set.\n");
+                    // printf("Zero leading flag set.\n");
                     //Write number.
                     updateNum((c-48));
                     break;
@@ -683,7 +684,7 @@ void readInput(){
                     //Write number.
                     updateNum((c-48));
                     zeroFlag = 1;
-                    //// printf("Zero leading flag set.\n");
+                    // printf("Zero leading flag set.\n");
                     break;
                 case 7:
                     if(zeroFlag){
@@ -699,7 +700,7 @@ void readInput(){
                             break;
                         }
                         digitCount++;
-                        //// printf("Digit updated. %d decimal now.\n", digitCount);
+                        // printf("Digit updated. %d decimal now.\n", digitCount);
                     }
 
                     //Write number.
@@ -720,7 +721,7 @@ void readInput(){
             preInputCode = currentInputCode;
         }
         
-        // // printf("Previous input code: %d.\n", preInputCode);
+        // printf("Previous input code: %d.\n", preInputCode);
         
         
         
@@ -768,14 +769,14 @@ void findClosest(){
             for(int j = 0; j < pointCount; j++){
                 // Skip the duplicated points.
                 if(j == i){
-                    // // printf("Duplicate %d.\n", count);
+                    // printf("Duplicate %d.\n", count);
                     continue;
                 }
 
                 for(int k = 0; k < pointCount; k++){
                     // Skip the duplicated points.
                     if(k == j || k == i){
-                        // // printf("Duplicate %d.\n", count);
+                        // printf("Duplicate %d.\n", count);
                         continue;
                     }else{
                         float distSum = totalDist(points[k][0], points[k][1], points[j][0], points[j][1], points[i][0], points[i][1]);
