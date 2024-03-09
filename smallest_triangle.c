@@ -152,6 +152,7 @@ void invalid(int errCode){
     negativeFlag = 0;
     zeroFlag = 0;
     digitCount = 0;
+    charCount = 0;
     // printf("Clear comma flag.\n");
     // printf("Clear point flag.\n");
     // printf("Clear negative flag.\n");
