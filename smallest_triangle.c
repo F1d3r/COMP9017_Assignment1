@@ -136,8 +136,12 @@ void invalid(int errCode){
         break;
     // Invalid code 15: Multiple integer part zeros.
     case 15:
-        break;
         // printf("Multiple integer part zeros.\n");
+        break;
+    // Invalid code 16: Blank line.
+    case 16:
+        break;
+        // printf("Blank line.\n");
     default:
         break;
     }
@@ -218,11 +222,6 @@ void readInput(){
 
     while((c = getchar())!=EOF){
         charCount++;
-        // if(c != '\n'){
-        // printf("A char read: %c\n", c);
-        // }else{
-        // printf("A char read: \\n\n");
-        // }
 
         // Update current input code.
         if(isdigit(c) && c != '0')
@@ -258,6 +257,12 @@ void readInput(){
         }
         
         // printf("--%d--%d--\n", preInputCode, currentInputCode);
+
+        // if(c != '\n'){
+        //     printf("A char read: %c\n", c);
+        // }else{
+        //     printf("A char read: \\n\n");
+        // }
 
         validFlag = 1;
         // Process according to current and previous input.
@@ -603,16 +608,17 @@ void readInput(){
                     invalid(11);
                     break;
                 case 6:
-                    commaFlag = 0;
-                    pointFlag = 0;
-                    negativeFlag = 0;
-                    zeroFlag = 0;
-                    digitCount = 0;
-                    // printf("Comma flag clear.\n");
-                    // printf("Point flag clear.\n");
-                    // printf("Negative flag clear.\n");
-                    // printf("Zero leading flag clear.\n");
-                    // printf("Digit count clear.\n\n");
+                    invalid(16);
+                    // commaFlag = 0;
+                    // pointFlag = 0;
+                    // negativeFlag = 0;
+                    // zeroFlag = 0;
+                    // digitCount = 0;
+                    // // printf("Comma flag clear.\n");
+                    // // printf("Point flag clear.\n");
+                    // // printf("Negative flag clear.\n");
+                    // // printf("Zero leading flag clear.\n");
+                    // // printf("Digit count clear.\n\n");
                     break;
                 case 7:
                     if(commaFlag){
