@@ -12,6 +12,7 @@ int validFlag = 1;
 int digitCount = 0;
 int pointCount = 0;
 int preInputCode = 0;
+int charCount = 0;
 int currentInputCode = 0;
 
 float points[1000][2]; // Used to store points.
@@ -62,6 +63,7 @@ void clearLine(){
     while (c != '\n' && !feof(stdin))
     {
         c = getchar();
+        charCount ++;
     }
     // printf("A line has been claer.\n");
 }
@@ -132,7 +134,9 @@ void invalid(int errCode){
     case 14:
         // printf("Duplicated point.\n");
         break;
+    // Invalid code 15: Multiple integer part zeros.
     case 15:
+        break;
         // printf("Multiple integer part zeros.\n");
     default:
         break;
@@ -212,7 +216,7 @@ void writePoint(){
 void readInput(){
 
     while((c = getchar())!=EOF){
-
+        charCount++;
         // if(c != '\n'){
         //     // printf("A char read: %c\n", c);
         // }else{
@@ -461,6 +465,8 @@ void readInput(){
                         break;
                     }else{
                         pointFlag = 1;
+                        zeroFlag = 0;
+                        // printf("Zero flag clear.\n");
                         // printf("Point flag set.\n");
                     }
                     break;
@@ -491,7 +497,9 @@ void readInput(){
                         break;
                     }else{
                         pointFlag = 1;
-                        //// printf("Point flag set.\n");
+                        zeroFlag = 0;
+                        // printf("Zero flag clear.\n");
+                        // printf("Point flag set.\n");
                     }
                     break;
                 default:
@@ -721,7 +729,7 @@ void readInput(){
     }
 
     // Commit last point.
-    if(validFlag){
+    if(validFlag && charCount != 0){
         writePoint();
     }
 
@@ -748,11 +756,11 @@ void findClosest(){
     // If there is not sufficient points to form a triangle.
     if(pointCount < 3){
         // Just print all points.
-        for(int i = 0; i < pointCount - 1; i++){
-            // printf("%.2f, %.2f\n", points[pointCount][0], points[pointCount][1]);
+        for(int i = 0; i < pointCount; i++){
+            printPoint(i);
         }
         // Determine it is no a triangle.
-        // printf("This is not a triangle\n");
+        printf("This is not a triangle\n");
     }else{
         // Find the closest 3 points.
         // int count;
