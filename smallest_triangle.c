@@ -770,7 +770,7 @@ void findClosest(){
             printPoint(i);
         }
         // Determine it is no a triangle.
-        // printf("This is not a triangle\n");
+        printf("This is not a triangle\n");
     }else{
         // Find the closest 3 points.
         // int count;
