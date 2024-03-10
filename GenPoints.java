@@ -20,7 +20,7 @@ public class GenPoints{
                     arg = arg.substring(3);
                     int num = Integer.parseInt(arg);
                     if(num < 0){
-                        System.err.println("N less than zero");
+                        System.err.println("N less than zero\n");
                         System.exit(-1);
                     }else{
                         numberOfPoints = Integer.parseInt(arg);
@@ -30,11 +30,11 @@ public class GenPoints{
                 }else if(arg.startsWith("-mindist=")){
                     arg = arg.substring(9);
                     Double num = Double.parseDouble(arg);
-                    if(num < 0 || num > 10){
-                        System.err.println("mindist outside range");
+                    if(num < 0 || num > 100){
+                        System.err.println("mindist outside range\n");
                         System.exit(-2);
                     }else{
-                        minDistance = Double.parseDouble(arg);
+                        minDistance = num;
                         getMinDistance = true;
                     }
                     //System.out.println("Minumu distance: " + minDistance);
@@ -46,24 +46,23 @@ public class GenPoints{
                     //System.out.println("Rseed: " + rseed);
                 }else{
                     // Check if there is an invalid argument given.
-                    System.err.println("invalid arguments1");
+                    System.err.println("Incorrect input format");
                     System.exit(-4);
                 }
             }
         }
         // Handle other arguments input exception. e.g.: -N=haha; -N= 20.
         catch(Exception e){
-            System.err.println("invalid arguments");
-            System.exit(-4);
+            System.err.println("Incorrect input format");
         }
         
         // Check if the two core arguments are given.
         if (!getN || !getMinDistance) {
-            System.err.println("invalid arguments");
+            System.err.println("Not enough necessary arguments.\n");
             System.exit(-4);
         }else{
             if(numberOfPoints > 10000/(Math.PI * Math.pow(minDistance, 2))){
-                System.err.println("point saturation");
+                System.err.println("point saturation\n");
                 System.exit(-3);
             }
         }
