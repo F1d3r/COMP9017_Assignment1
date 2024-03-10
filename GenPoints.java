@@ -5,6 +5,8 @@ public class GenPoints{
 
     public static void main(String[] args){
 
+        System.out.println("Test");
+
         int numberOfPoints = 1;
         double minDistance = 1;
         int rseed = 0;
@@ -119,12 +121,12 @@ public class GenPoints{
         }
 
 
-        // // Print all points.
-        // for(int i = 0; i < numberOfPoints; i++){
-        //     System.out.printf("%.2f", (points[i][0]));
-        //     System.out.printf(", ");
-        //     System.out.printf("%.2f\n", (points[i][1]));
-        // }
+        // Print all points.
+        for(int i = 0; i < numberOfPoints; i++){
+            System.out.printf("%.2f", (points[i][0]));
+            System.out.printf(", ");
+            System.out.printf("%.2f\n", (points[i][1]));
+        }
 
         //System.out.println(numberOfPoints + " points generated.");
 
