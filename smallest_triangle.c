@@ -224,7 +224,8 @@ void readInput(){
 
     while((c = getchar()) !=EOF){
         charCount++;
-
+        validFlag = 1;
+        
         // Update current input code.
         if(isdigit(c) && c != '0')
         {
@@ -265,8 +266,8 @@ void readInput(){
         }else{
             // printf("A char read: \\n\n");
         }
+        
 
-        validFlag = 1;
         // Process according to current and previous input.
         switch (currentInputCode)
         {
