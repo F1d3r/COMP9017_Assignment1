@@ -4,9 +4,6 @@ import java.util.Random;
 public class GenPoints{
 
     public static void main(String[] args){
-
-        System.out.println("Test");
-
         int numberOfPoints = 1;
         double minDistance = 1;
         int rseed = 0;

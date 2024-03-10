@@ -1,4 +1,4 @@
-cat tests/generator_test03.in | xargs java GenPoints
+cat tests/generator_test01.in | xargs java GenPoints
 # cat tests/generator_test01.in | xargs java GenPoints > tests/generator_test01.out > tests/searcher_test01.in
 # cat tests/generator_test02.in | xargs java GenPoints > tests/generator_test02.out > tests/searcher_test02.in
 # cat tests/generator_test03.in | xargs java GenPoints > tests/generator_test03.out > tests/searcher_test03.in
